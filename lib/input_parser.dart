@@ -1,4 +1,4 @@
-import 'package:dart_application_1/morse_tree.dart';
+import 'package:morse_code_converter/morse_tree.dart';
 
 var morseDictionary = {
     "A": ".-",
