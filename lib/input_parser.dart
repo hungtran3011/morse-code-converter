@@ -1,15 +1,81 @@
 import 'package:dart_application_1/morse_tree.dart';
 
+var morseDictionary = {
+    "A": ".-",
+    "B": "-...",
+    "C": "-.-.",
+    "D": "-..",
+    "E": ".",
+    "F": "..-.",
+    "G": "--.",
+    "H": "....",
+    "I": "..",
+    "J": ".---",
+    "K": "-.-",
+    "L": ".-..",
+    "M": "--",
+    "N": "-.",
+    "O": "---",
+    "P": ".--.",
+    "Q": "--.-",
+    "R": ".-.",
+    "S": "...",
+    "T": "-",
+    "U": "..-",
+    "V": "...-",
+    "W": ".--",
+    "X": "-..-",
+    "Y": "-.--",
+    "Z": "--..",
+    "1": ".----",
+    "2": "..---",
+    "3": "...--",
+    "4": "....-",
+    "5": ".....",
+    "6": "-....",
+    "7": "--...",
+    "8": "---..",
+    "9": "----.",
+    "0": "-----",
+    ".": ".-.-.-",
+    ",": "--..--",
+    "?": "..--..",
+    "'": ".----.",
+    "!": "-.-.--",
+    "/": "-..-.",
+    "(": "-.--.",
+    ")": "-.--.-",
+    "&": ".-...",
+    ":": "---...",
+    ";": "-.-.-.",
+    "=": "-...-",
+    "+": ".-.-.",
+    "-": "-....-",
+    "_": "..--.-",
+    "\"": ".-..-.",
+    "\$": "...-..-",
+    "@": ".--.-.",
+    " ": "/",
+};
+
 String parseNaturalText(String text){
-    String? result = "";
+    String result = "";
     text = text.toUpperCase();
     if (text.isEmpty) {
         throw ArgumentError("Input text must not be empty");
     }
     final textLength = text.length;
     for (int i = 0; i < textLength; i++){
-        final tmpChar = text[i];
-
+        var char = text[i];
+        if (char == " "){
+            result += "/ ";
+            continue;
+        }
+        if (morseDictionary.containsKey(char)){
+            result += "${morseDictionary[char]} ";
+        } else {
+            throw ArgumentError("Invalid character: $char");
+        }
     }
     return result;
 }
